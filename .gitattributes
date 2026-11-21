@@ -1,0 +1,28 @@
+
+# Gestion des fins de ligne
+* text=auto
+
+# Fichiers texte
+*.txt text
+*.md text
+*.csv text
+*.sql text
+*.dax text
+*.json text
+*.xml text
+*.dtsx text eol=crlf
+
+# Fichiers Windows
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Fichiers Excel et Power BI : binaires
+*.xlsx binary
+*.xls binary
+*.pbix binary
+*.zip binary
+
+# Visual Studio
+*.sln text
+*.csproj text
+*.config text
