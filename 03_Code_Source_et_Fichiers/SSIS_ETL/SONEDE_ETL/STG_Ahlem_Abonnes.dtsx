@@ -1,0 +1,1463 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/25/2026 3:34:20 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-EN1MAQE"
+  DTS:CreatorName="DESKTOP-EN1MAQE\Dell"
+  DTS:DTSID="{645B6485-6CBF-4F97-8C48-F22B3EF9A2B4}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{06B99E82-B307-47B5-8618-D34C84648E14}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Gestionnaire de connexions Excel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{8E721B24-B52E-439D-B11A-C8BC55C44988}"
+      DTS:ObjectName="Gestionnaire de connexions Excel">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::FilePath]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\SONEDE_Sources\nombre-d-abonnes-par-usage-en-2012.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{10AC7CA5-A7BB-4EC2-B639-70B69AC7E96F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FilePath">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\SONEDE_Sources\nombre-d-abonnes-par-usage-en-2012.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F7C8AF50-D4FC-4027-94AE-46B0F08966F6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EEFDC898-ED01-49FF-8262-63661509E990}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsLoaded">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C4D6C093-DC01-4CAE-8094-6000B51A4A36}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowsRead">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\FEL - Loop Fichiers Abonnes"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Conteneur de boucles Foreach"
+      DTS:DTSID="{0498F24D-095F-4C53-A65B-F46C539FFE6D}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FEL - Loop Fichiers Abonnes">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{ACB312DF-020E-4C77-911E-EE7D3744CB37}"
+        DTS:ObjectName="{ACB312DF-020E-4C77-911E-EE7D3744CB37}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\SONEDE_Sources\" />
+            <FEFEProperty
+              FileSpec="nombre-d-abonnes-par-usage-en-*.xlsx" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tâche de flux de données"
+          DTS:DTSID="{211BD7B6-236D-4BB2-99EF-AB2F8613F55F}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT - Load Abonnes"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+                  name="Colonne dérivée"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+                      description="Entrée de la transformation de colonnes dérivées"
+                      name="Entrée de colonne dérivée">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie de colonne dérivée]"
+                      description="Sortie par défaut de la transformation de colonnes dérivées"
+                      exclusionGroup="1"
+                      name="Sortie de colonne dérivée"
+                      synchronousInputId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Annee]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Calcul"
+                          errorRowDisposition="FailComponent"
+                          length="10"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Annee]"
+                          name="Annee"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression de colonne dérivée"
+                              name="Expression">(DT_WSTR,10)[SUBSTRING](@[User::FilePath],[FINDSTRING](@[User::FilePath],".xlsx",1) - 4,4)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression claire de colonne dérivée"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,10)SUBSTRING(@[User::FilePath],FINDSTRING(@[User::FilePath],".xlsx",1) - 4,4)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Source_File]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Calcul"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Source_File]"
+                          name="Source_File"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression de colonne dérivée"
+                              name="Expression">(DT_WSTR,255)[RIGHT](@[User::FilePath],[FINDSTRING]([REVERSE](@[User::FilePath]),"\\",1) - 1)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression claire de colonne dérivée"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_WSTR,255)RIGHT(@[User::FilePath],FINDSTRING(REVERSE(@[User::FilePath]),"\\",1) - 1)</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée]"
+                      description="Sortie d'erreur de la transformation de colonnes dérivées"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de colonne dérivée"
+                      synchronousInputId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Inputs[Entrée de colonne dérivée]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+                  description="Destination OLE DB"
+                  name="Destination OLE DB"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowset">[dbo].[Stg_Abonnes]</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Commande SQL à exécuter."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie le mode utilisé pour accéder à la base de données."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CM_SA_SONEDE]"
+                      description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                      errorOrTruncationOperation="Insérer"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrée de destination OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Usage_]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Usage_"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Usage_]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Usage_]" />
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Nb_Abonnes]"
+                          cachedDataType="r8"
+                          cachedName="Nb_Abonnes"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Abonnes]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]" />
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[district]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="district"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[District]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[district]" />
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Annee]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="Annee"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Annee]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Annee]" />
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[Source_File]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Source_File"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Source_File]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie de colonne dérivée].Columns[Source_File]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Annee]"
+                          dataType="wstr"
+                          length="10"
+                          name="Annee" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[District]"
+                          dataType="wstr"
+                          length="100"
+                          name="District" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Usage_]"
+                          dataType="wstr"
+                          length="100"
+                          name="Usage_" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Abonnes]"
+                          dataType="wstr"
+                          length="30"
+                          name="Nb_Abonnes" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Source_File]"
+                          dataType="wstr"
+                          length="200"
+                          name="Source_File" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[Load_Date]"
+                          dataType="dbTimeStamp2"
+                          name="Load_Date"
+                          scale="7" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de destination OLE DB"
+                      synchronousInputId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Fractionnement conditionnel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Achemine des lignes de données vers différentes sorties, selon le contexte des données. Utilisez des conditions (expressions SSIS) pour spécifier les lignes qui seront acheminées. Par exemple, séparez les enregistrements qui doivent être nettoyés de ceux qui sont prêts à être chargés ou acheminez uniquement un sous-ensemble d'enregistrements."
+                  name="Fractionnement conditionnel"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Inputs[Entrée de fractionnement conditionnel]"
+                      description="Entrée vers la transformation de fractionnement conditionnel"
+                      name="Entrée de fractionnement conditionnel">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Inputs[Entrée de fractionnement conditionnel].Columns[district]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="district"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[district]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Outputs[LignesValides]"
+                      description="Sortie 1 de la transformation de fractionnement conditionnel"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="LignesValides"
+                      synchronousInputId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Inputs[Entrée de fractionnement conditionnel]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Spécifie l'expression. Cette version d'expression utilise les identificateurs de traçabilité à la place des noms de colonnes."
+                          name="Expression">![ISNULL](#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[district]}) &amp;&amp; [TRIM](#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[district]}) != ""</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Spécifie la version claire de l'expression. Cette version d'expression utilise les noms de colonnes."
+                          expressionType="Notify"
+                          name="FriendlyExpression">!ISNULL(district) &amp;&amp; TRIM(district) != ""</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie la position de la condition dans la liste des conditions que la transformation évalue. L'ordre d'évaluation se fait par ordre croissant de valeur."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Outputs[Sortie par défaut de fractionnement conditionnel]"
+                      description="Sortie par défaut de la transformation de fractionnement conditionnel"
+                      exclusionGroup="1"
+                      name="Sortie par défaut de fractionnement conditionnel"
+                      synchronousInputId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Inputs[Entrée de fractionnement conditionnel]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Outputs[Sortie d'erreur de fractionnement conditionnel]"
+                      description="Sortie d'erreur de la transformation de fractionnement conditionnel"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de fractionnement conditionnel"
+                      synchronousInputId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Inputs[Entrée de fractionnement conditionnel]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Outputs[Sortie d'erreur de fractionnement conditionnel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Outputs[Sortie d'erreur de fractionnement conditionnel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Outputs[Sortie d'erreur de fractionnement conditionnel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Outputs[Sortie d'erreur de fractionnement conditionnel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Nombre de lignes"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Nombre de lignes;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Compte les lignes à mesure qu'elles franchissent un flux de données. Par exemple, utilisez le nombre de lignes traitées pour déterminer s'il faut ou non effectuer les opérations de nettoyage, ou mettez à jour le texte dans un message électronique pour communiquer l'état du traitement."
+                  name="Nombre de lignes">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie la variable contenant le nombre de lignes."
+                      name="VariableName">User::RowsRead</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Nombre de lignes.Inputs[Nombre de lignes entrée 1]"
+                      hasSideEffects="true"
+                      name="Nombre de lignes entrée 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Nombre de lignes.Outputs[Nombre de lignes sortie 1]"
+                      name="Nombre de lignes sortie 1"
+                      synchronousInputId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Nombre de lignes.Inputs[Nombre de lignes entrée 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Source Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+                  description="Source Excel"
+                  name="Source Excel"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowset">Feuil1$</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Commande SQL à exécuter."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="Variable contenant la commande SQL à exécuter."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie le mode utilisé pour accéder à la base de données."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Mappage des paramètres de la commande SQL en variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Gestionnaire de connexions Excel]"
+                      connectionManagerRefId="Package.ConnectionManagers[Gestionnaire de connexions Excel]"
+                      description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel]"
+                      name="Sortie de source Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[district]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[district]"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[district]"
+                          name="district"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Domestique branché]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Domestique branché]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Domestique branché]"
+                          name="Domestique branché"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Domestique non branché]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Domestique non branché]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Domestique non branché]"
+                          name="Domestique non branché"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Commerce]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Commerce]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Commerce]"
+                          name="Commerce"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[administration]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[administration]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[administration]"
+                          name="administration"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Municipal]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Municipal]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Municipal]"
+                          name="Municipal"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Total]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Total]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Total]"
+                          name="Total"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Industrie]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Industrie]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Industrie]"
+                          name="Industrie"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Tourisme]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Tourisme]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Tourisme]"
+                          name="Tourisme"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Divers]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Divers]"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Divers]"
+                          name="Divers"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[F11]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[F11]"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[F11]"
+                          name="F11"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[F12]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[F12]"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[F12]"
+                          name="F12"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[district]"
+                          dataType="wstr"
+                          length="255"
+                          name="district" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Domestique branché]"
+                          dataType="r8"
+                          name="Domestique branché" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Domestique non branché]"
+                          dataType="r8"
+                          name="Domestique non branché" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Commerce]"
+                          dataType="r8"
+                          name="Commerce" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[administration]"
+                          dataType="r8"
+                          name="administration" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Municipal]"
+                          dataType="r8"
+                          name="Municipal" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Total]"
+                          dataType="r8"
+                          name="Total" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Industrie]"
+                          dataType="r8"
+                          name="Industrie" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Tourisme]"
+                          dataType="r8"
+                          name="Tourisme" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[Divers]"
+                          dataType="r8"
+                          name="Divers" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[F11]"
+                          dataType="wstr"
+                          length="255"
+                          name="F11" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].ExternalColumns[F12]"
+                          dataType="wstr"
+                          length="255"
+                          name="F12" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel]"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de source Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[district]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[district]"
+                          name="district" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Domestique branché]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Domestique branché]"
+                          name="Domestique branché" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Domestique non branché]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Domestique non branché]"
+                          name="Domestique non branché" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Commerce]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Commerce]"
+                          name="Commerce" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[administration]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[administration]"
+                          name="administration" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Municipal]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Municipal]"
+                          name="Municipal" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Total]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Total]"
+                          name="Total" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Industrie]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Industrie]"
+                          name="Industrie" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Tourisme]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Tourisme]"
+                          name="Tourisme" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Divers]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[Divers]"
+                          name="Divers" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[F11]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[F11]"
+                          name="F11" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[F12]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[F12]"
+                          name="F12" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique"
+                  componentClassID="Microsoft.UnPivot"
+                  contactInfo="Supprimer le tableau croisé dynamique;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Développe un flux de données non normalisé en une version plus normalisée. Les valeurs provenant de plusieurs colonnes d'un même enregistrement sont développées en plusieurs enregistrements dans une colonne unique. Par exemple, développez une table qui répertorie les résultats d'athlétisme avec une colonne pour chaque discipline en plusieurs enregistrements et une seule colonne de résultats."
+                  name="Supprimer le tableau croisé dynamique">
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot]"
+                      hasSideEffects="true"
+                      name="Entrée Unpivot">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[Domestique branché]"
+                          cachedDataType="r8"
+                          cachedName="Domestique branché"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Domestique branché]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Domestique branché</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[Domestique non branché]"
+                          cachedDataType="r8"
+                          cachedName="Domestique non branché"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Domestique non branché]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Domestique non branché</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[Commerce]"
+                          cachedDataType="r8"
+                          cachedName="Commerce"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Commerce]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Commerce</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[administration]"
+                          cachedDataType="r8"
+                          cachedName="administration"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[administration]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">administration</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[Municipal]"
+                          cachedDataType="r8"
+                          cachedName="Municipal"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Municipal]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Municipal</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[Industrie]"
+                          cachedDataType="r8"
+                          cachedName="Industrie"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Industrie]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Industrie</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[Tourisme]"
+                          cachedDataType="r8"
+                          cachedName="Tourisme"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Tourisme]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Tourisme</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[Divers]"
+                          cachedDataType="r8"
+                          cachedName="Divers"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[Divers]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Divers</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot].Columns[district]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="district"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel].Columns[district]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[district]}</property>
+                            <property
+                              dataType="System.Null"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot]"
+                      name="Sortie Unpivot">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Usage_]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Usage_]"
+                          name="Usage_">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la valeur dans la propriété PivotKeyValue est enregistrée dans la colonne de la nouvelle ligne."
+                              name="PivotKey">true</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]"
+                          name="Nb_Abonnes">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la valeur dans la propriété PivotKeyValue est enregistrée dans la colonne de la nouvelle ligne."
+                              name="PivotKey">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[district]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot].Columns[district]"
+                          name="district">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la valeur dans la propriété PivotKeyValue est enregistrée dans la colonne de la nouvelle ligne."
+                              name="PivotKey">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[LignesValides]"
+                  endId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Nombre de lignes.Inputs[Nombre de lignes entrée 1]"
+                  name="LignesValides"
+                  startId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Outputs[LignesValides]" />
+                <path
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[Nombre de lignes sortie 1]"
+                  endId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Inputs[Entrée Unpivot]"
+                  name="Nombre de lignes sortie 1"
+                  startId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Nombre de lignes.Outputs[Nombre de lignes sortie 1]" />
+                <path
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[Sortie de colonne dérivée]"
+                  endId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  name="Sortie de colonne dérivée"
+                  startId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Outputs[Sortie de colonne dérivée]" />
+                <path
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[Sortie de source Excel]"
+                  endId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel.Inputs[Entrée de fractionnement conditionnel]"
+                  name="Sortie de source Excel"
+                  startId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel.Outputs[Sortie de source Excel]" />
+                <path
+                  refId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[Sortie Unpivot]"
+                  endId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée.Inputs[Entrée de colonne dérivée]"
+                  name="Sortie Unpivot"
+                  startId="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique.Outputs[Sortie Unpivot]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{555E3885-2FFA-498F-8F64-9E5A23C779BE}"
+          DTS:ObjectName="{555E3885-2FFA-498F-8F64-9E5A23C779BE}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FilePath" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Log Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{BB247CCB-3F91-4845-B4E7-37447264EE39}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Log Start"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_Log_Start @Package = ?, @LogID = ? OUTPUT   " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="100" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::LogID"
+            SQLTask:ParameterDirection="Output"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Truncate Staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{439B3F1C-7C88-4D25-96F4-F4B1DE9422F2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Truncate Staging"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Stg_Abonnes" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F34BEAA-9BDA-4ED9-82D5-A3F06FB82B72}"
+      DTS:From="Package\SQL - Log Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\SQL - Truncate Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{D524E3EC-71CC-4921-8FE5-45D17AE73DFA}"
+      DTS:From="Package\SQL - Truncate Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 1"
+      DTS:To="Package\FEL - Loop Fichiers Abonnes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42.6666666666667"
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes"
+          TopLeft="49.8333238338434,22.233331287702" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="255.333333333334,120"
+          Size="255.333333333334,162.666666666667"
+          Id="Package\FEL - Loop Fichiers Abonnes"
+          TopLeft="162.999992959202,155.233329118093" />
+        <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\SQL - Log Start"
+          TopLeft="5.50000000000003,5.5" />
+        <NodeLayout
+          Size="245.333333333334,42.6666666666667"
+          Id="Package\SQL - Truncate Staging"
+          TopLeft="6.75000128522511,79.6999978923798" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="81.5,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.9166679518918,31.5333312257132"
+              Start="0,0"
+              End="47.9166679518918,24.0333312257132">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.7666656128566" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.7666656128566"
+                    Point2="0,15.7666656128566"
+                    Point3="4,15.7666656128566" />
+                  <mssgle:LineSegment
+                    End="43.9166679518918,15.7666656128566" />
+                  <mssgle:CubicBezierSegment
+                    Point1="43.9166679518918,15.7666656128566"
+                    Point2="47.9166679518918,15.7666656128566"
+                    Point3="47.9166679518918,19.7666656128566" />
+                  <mssgle:LineSegment
+                    End="47.9166679518918,24.0333312257132" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="129.416667951892,122.366664559046">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="161.249991673977,32.8666645590466"
+              Start="0,0"
+              End="161.249991673977,25.3666645590466">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.4333322795233" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.4333322795233"
+                    Point2="0,16.4333322795233"
+                    Point3="4,16.4333322795233" />
+                  <mssgle:LineSegment
+                    End="157.249991673977,16.4333322795233" />
+                  <mssgle:CubicBezierSegment
+                    Point1="157.249991673977,16.4333322795233"
+                    Point2="161.249991673977,16.4333322795233"
+                    Point3="161.249991673977,20.4333322795233" />
+                  <mssgle:LineSegment
+                    End="161.249991673977,25.3666645590466" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="139.333333333334,42.6666666666667"
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel"
+          TopLeft="131.999996066094,20.9999993741512" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Nombre de lignes"
+          TopLeft="160.999995201826,186.999994426966" />
+        <NodeLayout
+          Size="262.666666666667,42.6666666666667"
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Supprimer le tableau croisé dynamique"
+          TopLeft="297.999991118908,257.999992311001" />
+        <EdgeLayout
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[Nombre de lignes sortie 1]"
+          TopLeft="242.33332853516,229.666661093633">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="186.999995917082,28.3333312173685"
+              Start="0,0"
+              End="186.999995917082,20.8333312173685">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.1666656086843" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.1666656086843"
+                    Point2="0,14.1666656086843"
+                    Point3="4,14.1666656086843" />
+                  <mssgle:LineSegment
+                    End="182.999995917082,14.1666656086843" />
+                  <mssgle:CubicBezierSegment
+                    Point1="182.999995917082,14.1666656086843"
+                    Point2="186.999995917082,14.1666656086843"
+                    Point3="186.999995917082,18.1666656086843" />
+                  <mssgle:LineSegment
+                    End="186.999995917082,20.8333312173685" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="154.666666666667,42.6666666666667"
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Colonne dérivée"
+          TopLeft="416.999987572432,326.666659096877" />
+        <EdgeLayout
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[Sortie Unpivot]"
+          TopLeft="429.333324452242,300.666658977668">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64.9999964535238,26.0000001192093"
+              Start="0,0"
+              End="64.9999964535238,18.5000001192093">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.00000005960464" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.00000005960464"
+                    Point2="0,13.0000000596046"
+                    Point3="4,13.0000000596046" />
+                  <mssgle:LineSegment
+                    End="60.9999964535238,13.0000000596046" />
+                  <mssgle:CubicBezierSegment
+                    Point1="60.9999964535238,13.0000000596046"
+                    Point2="64.9999964535238,13.0000000596046"
+                    Point3="64.9999964535238,17.0000000596046" />
+                  <mssgle:LineSegment
+                    End="64.9999964535238,18.5000001192093" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB"
+          TopLeft="490.99998536706,407.333325763544" />
+        <EdgeLayout
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[Sortie de colonne dérivée]"
+          TopLeft="494.333320905765,369.333325763544">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82.6666644612948,38"
+              Start="0,0"
+              End="82.6666644612948,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="4,19" />
+                  <mssgle:LineSegment
+                    End="78.6666644612948,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.6666644612948,19"
+                    Point2="82.6666644612948,19"
+                    Point3="82.6666644612948,23" />
+                  <mssgle:LineSegment
+                    End="82.6666644612948,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="213.333333333334,42.6666666666667"
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Fractionnement conditionnel"
+          TopLeft="280.999991625548,69.9999979138375" />
+        <EdgeLayout
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[Sortie de source Excel]"
+          TopLeft="271.333329399427,42.3333327074846">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.333328892788,27.6666652063529"
+              Start="0,0"
+              End="116.333328892788,20.1666652063529">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="112.333328892788,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="112.333328892788,0"
+                    Point2="116.333328892788,0"
+                    Point3="116.333328892788,4" />
+                  <mssgle:LineSegment
+                    End="116.333328892788,20.1666652063529" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes.Paths[LignesValides]"
+          TopLeft="387.666658292214,112.666664580504">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-145.333329757055,74.3333298464617"
+              Start="0,0"
+              End="-145.333329757055,66.8333298464617">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.1666649232308" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.1666649232308"
+                    Point2="0,37.1666649232308"
+                    Point3="-4,37.1666649232308" />
+                  <mssgle:LineSegment
+                    End="-141.333329757055,37.1666649232308" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-141.333329757055,37.1666649232308"
+                    Point2="-145.333329757055,37.1666649232308"
+                    Point3="-145.333329757055,41.1666649232308" />
+                  <mssgle:LineSegment
+                    End="-145.333329757055,66.8333298464617" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-102.779243003527,42.1666649232308,60.22515625,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Source Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Loop Fichiers Abonnes\DFT - Load Abonnes\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
