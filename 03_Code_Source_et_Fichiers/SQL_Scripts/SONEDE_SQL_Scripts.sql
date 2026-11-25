@@ -332,3 +332,6 @@ WHERE t.Territoire_SK IS NULL;
 
 -- Journal ETL
 SELECT * FROM SA_SONEDE.dbo.Log_ETL_Execution ORDER BY LogID DESC;
+SELECT 'SA_SONEDE : tables' AS Controle, COUNT(*) AS Resultat FROM SA_SONEDE.sys.tables
+UNION ALL SELECT 'SONEDE_DW : tables', COUNT(*) FROM SONEDE_DW.sys.tables
+UNION ALL SELECT 'Dim_Temps : lignes', COUNT(*) FROM SONEDE_DW.dbo.Dim_Temps;
