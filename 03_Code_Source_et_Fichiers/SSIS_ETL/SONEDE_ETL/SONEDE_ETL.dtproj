@@ -26,7 +26,11 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">MELAK_GAZZAH</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
+<<<<<<< HEAD
           <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA7lhUOAACcUG7ZRzpeaKmugAAAAACAAAAAAAQZgAAAAEAACAAAACHtoRc62n2PZ4HiT3Xsna45JXp6S5otjjjiFcrPn+g2QAAAAAOgAAAAAIAACAAAAD+sAIwqyWYtiR1WrfFE3HJG8nK4F9E7d1cNKDoqsSDjJAAAABu1AH50x8QVWNA54ir5Gs697fVkIZ/oijmSOpVGosVozp5jvUbYXJj3il4lxe+EUx11fRrbnYbcxQ3wD9cdhwRXjqXdbf1un7E8+2vH2fCaJYWS0ikT9k4g65gBo2+UsquaiILPxguEkejGWU0jd/3bV6yoq/LnhVfOzouIdad/P+hZJasrl3vI2VC/06wrVhAAAAAKaF+OnvktW80JwUxjTLBXG11i+zsh3qDU/o+5lnURTlF9J4thsNqppIYWV4BbOwrhriyfSmvNYKkQyMpdVxc8w==</SSIS:Property>
+=======
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAXqe89EuW/0yN5Cd8pGZZ5gAAAAACAAAAAAAQZgAAAAEAACAAAADxunltRvilbiydKcbzxnUkPvqXxN4YCiF5ujVQhcqVfAAAAAAOgAAAAAIAACAAAADQDWE3qS80Kb5vspRvb8tsmkNrO7/EO3Ad7aqx6R4KRJAAAADgfChHrXksiQV6nj3SmkUcm4mJQ5n5qOtk/yhtxuqhxmE8AA1+B8Ud4t2gCFZsUey4UaGiwKAS2Ff4ycuVZgMr/aF9hdmJhs/L6vYMpqk3CvWLXXo5IXdiMzBoMGZtOZNorRWEZGajwv0VitXXvRS8N75qkcniKNvKWslvTz42egUkHYxJdIcwjBIvmJ7rSuJAAAAAYIUutXCK5/CbpM4XsIdTaaF30NB6bU6AgHSxMN2sEUPpt1pAXNsjfK7rhz7NS1tscqqrVLQ4cFHsCRbLnZQccw==</SSIS:Property>
+>>>>>>> origin/main
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -343,10 +347,10 @@
                 <SSIS:Property SSIS:Name="Name">STG_Melak_Abonnes</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">31</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4C25DAE6-54DB-4438-8610-5BED30342C20}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B9E59673-7578-48B2-B656-E93674D55C20}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -634,7 +638,11 @@
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>
             <Name>LastModifiedTime</Name>
+<<<<<<< HEAD
             <Value xsi:type="xsd:dateTime">2026-11-25T17:21:36.1927763Z</Value>
+=======
+            <Value xsi:type="xsd:dateTime">2026-11-25T16:24:36.7694153Z</Value>
+>>>>>>> origin/main
           </ConfigurationSetting>
         </ParameterConfigurationValues>
       </Options>
