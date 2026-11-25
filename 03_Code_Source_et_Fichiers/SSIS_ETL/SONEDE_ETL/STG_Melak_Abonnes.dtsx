@@ -1,0 +1,675 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/25/2026 1:17:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MELAK_GAZZAH"
+  DTS:CreatorName="MELAK_GAZZAH\melak"
+  DTS:DTSID="{ACF25AC0-1CD0-466F-AE74-545578AF071C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="STG_Melak_Abonnes"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{4C25DAE6-54DB-4438-8610-5BED30342C20}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_Excel_Abonnes]"
+      DTS:CreationName="EXCEL"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{9E1F626C-E088-43EF-BCB7-CA82D534EE78}"
+      DTS:ObjectName="CM_Excel_Abonnes">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::FichierCourante]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\SONEDE_Sources\nombre-d-abonnes-par-usage-en-2007.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A0A0BA82-7353-4B49-9491-F11D3ADB1F3F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FichierCourante">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\SONEDE_Sources\nombre-d-abonnes-par-usage-en-2007.xlsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{13B4A75A-6A47-4938-97D0-007CA1442455}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7A091F06-9B98-4A37-B05F-3E40323271C5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NbChargees">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{CE5CBF49-2184-4913-B595-203787D4CA13}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NbLues">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{22D79072-7F9F-49B8-98E1-708B2773DC2D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TotalChargees">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0CE4838C-ABAC-49A5-A658-67647F6DD5AD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TotalLues">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\FEL - Fichiers abonnes"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Conteneur de boucles Foreach"
+      DTS:DTSID="{54FBA77D-8F12-489F-892A-9B7F4FBEFFC7}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FEL - Fichiers abonnes">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{A152A61E-15E1-45BA-9C54-1E10FA4212A8}"
+        DTS:ObjectName="{A152A61E-15E1-45BA-9C54-1E10FA4212A8}">
+        <DTS:PropertyExpression
+          DTS:Name="Directory">@[$Project::P_DossierSources]</DTS:PropertyExpression>
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="C:\SONEDE_Sources\" />
+            <FEFEProperty
+              FileSpec="nombre-d-abonnes-par-usage-en-*.xlsx" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tâche de flux de données"
+          DTS:DTSID="{4FDCA1A8-5E6D-446B-AA22-5140FB098426}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT - Excel vers Stg_Abonnes"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Nombre de lignes;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Compte les lignes à mesure qu'elles franchissent un flux de données. Par exemple, utilisez le nombre de lignes traitées pour déterminer s'il faut ou non effectuer les opérations de nettoyage, ou mettez à jour le texte dans un message électronique pour communiquer l'état du traitement."
+                  name="RC - Lignes lues">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie la variable contenant le nombre de lignes."
+                      name="VariableName">User::NbLues</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues.Inputs[Nombre de lignes entrée 1]"
+                      hasSideEffects="true"
+                      name="Nombre de lignes entrée 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues.Outputs[Nombre de lignes sortie 1]"
+                      name="Nombre de lignes sortie 1"
+                      synchronousInputId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues.Inputs[Nombre de lignes entrée 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes"
+                  componentClassID="Microsoft.ExcelSource"
+                  contactInfo="Source Excel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+                  description="Source Excel"
+                  name="XLS - Fichier abonnes"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Commande SQL à exécuter."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [Feuil1$A1:J39]</property>
+                    <property
+                      dataType="System.String"
+                      description="Variable contenant la commande SQL à exécuter."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie le mode utilisé pour accéder à la base de données."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="Mappage des paramètres de la commande SQL en variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CM_Excel_Abonnes]"
+                      connectionManagerRefId="Package.ConnectionManagers[CM_Excel_Abonnes]"
+                      description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel]"
+                      name="Sortie de source Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[district]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[district]"
+                          length="255"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[district]"
+                          name="district"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Domestique branché]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Domestique branché]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Domestique branché]"
+                          name="Domestique branché"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Domestique non branché]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Domestique non branché]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Domestique non branché]"
+                          name="Domestique non branché"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Commerce]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Commerce]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Commerce]"
+                          name="Commerce"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[administration]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[administration]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[administration]"
+                          name="administration"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Municipal]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Municipal]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Municipal]"
+                          name="Municipal"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Total]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Total]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Total]"
+                          name="Total"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Industrie]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Industrie]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Industrie]"
+                          name="Industrie"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Tourisme]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Tourisme]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Tourisme]"
+                          name="Tourisme"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Divers]"
+                          dataType="r8"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Divers]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Divers]"
+                          name="Divers"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[district]"
+                          dataType="wstr"
+                          length="255"
+                          name="district" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Domestique branché]"
+                          dataType="r8"
+                          name="Domestique branché" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Domestique non branché]"
+                          dataType="r8"
+                          name="Domestique non branché" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Commerce]"
+                          dataType="r8"
+                          name="Commerce" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[administration]"
+                          dataType="r8"
+                          name="administration" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Municipal]"
+                          dataType="r8"
+                          name="Municipal" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Total]"
+                          dataType="r8"
+                          name="Total" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Industrie]"
+                          dataType="r8"
+                          name="Industrie" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Tourisme]"
+                          dataType="r8"
+                          name="Tourisme" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].ExternalColumns[Divers]"
+                          dataType="r8"
+                          name="Divers" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel]"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de source Excel">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[district]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[district]"
+                          name="district" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Domestique branché]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Domestique branché]"
+                          name="Domestique branché" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Domestique non branché]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Domestique non branché]"
+                          name="Domestique non branché" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Commerce]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Commerce]"
+                          name="Commerce" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[administration]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[administration]"
+                          name="administration" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Municipal]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Municipal]"
+                          name="Municipal" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Total]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Total]"
+                          name="Total" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Industrie]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Industrie]"
+                          name="Industrie" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Tourisme]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Tourisme]"
+                          name="Tourisme" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Divers]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[Divers]"
+                          name="Divers" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie d'erreur de source Excel].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie de source Excel]"
+                  endId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues.Inputs[Nombre de lignes entrée 1]"
+                  name="Sortie de source Excel"
+                  startId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{017308F3-138D-46BF-9F29-CB71FDF53D03}"
+          DTS:ObjectName="{017308F3-138D-46BF-9F29-CB71FDF53D03}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::FichierCourante" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Journal debut"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{BBDE39E3-50B7-454A-96F6-095160C431B1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Journal debut"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_Log_Start ?, ? OUTPUT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::LogID"
+            SQLTask:ParameterDirection="Output"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Vider Stg_Abonnes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{9C2E67C6-5154-4BE0-8179-98FDB2C64499}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Vider Stg_Abonnes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Stg_Abonnes;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{B2D69FC3-9838-42AD-A9AB-4DA0364AC228}"
+      DTS:From="Package\SQL - Journal debut"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\SQL - Vider Stg_Abonnes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DFF919ED-A13F-415F-AA9E-192051C7986C}"
+      DTS:From="Package\SQL - Vider Stg_Abonnes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 1"
+      DTS:To="Package\FEL - Fichiers abonnes" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\SQL - Journal debut"
+          TopLeft="80.7142858861052,35.9411764390844" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\SQL - Vider Stg_Abonnes"
+          TopLeft="170.714286077692,134.588235176146" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="166.714285886105,77.5411764390844">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.400000191586,57.0470587370614"
+              Start="0,0"
+              End="102.400000191586,49.5470587370614">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5235293685307" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5235293685307"
+                    Point2="0,28.5235293685307"
+                    Point3="4,28.5235293685307" />
+                  <mssgle:LineSegment
+                    End="98.4000001915864,28.5235293685307" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98.4000001915864,28.5235293685307"
+                    Point2="102.400000191586,28.5235293685307"
+                    Point3="102.400000191586,32.5235293685307" />
+                  <mssgle:LineSegment
+                    End="102.400000191586,49.5470587370614" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes"
+          TopLeft="84.2285717083484,25.3999997834949" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="309.6,121.6"
+          Size="309.6,164.8"
+          Id="Package\FEL - Fichiers abonnes"
+          TopLeft="4.40000002128718,206.470588054315" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="269.114286077692,176.188235176146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-109.914286056404,30.2823528781687"
+              Start="0,0"
+              End="-109.914286056404,22.7823528781687">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.1411764390844" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.1411764390844"
+                    Point2="0,15.1411764390844"
+                    Point3="-4,15.1411764390844" />
+                  <mssgle:LineSegment
+                    End="-105.914286056404,15.1411764390844" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-105.914286056404,15.1411764390844"
+                    Point2="-109.914286056404,15.1411764390844"
+                    Point3="-109.914286056404,19.1411764390844" />
+                  <mssgle:LineSegment
+                    End="-109.914286056404,22.7823528781687" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes"
+          TopLeft="125.714285981898,82.5882352217259" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues"
+          TopLeft="230.714286205416,173.588235141961" />
+        <EdgeLayout
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie de source Excel]"
+          TopLeft="215.714285981898,124.188235221726">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92.2000002235175,49.399999920235"
+              Start="0,0"
+              End="92.2000002235175,41.899999920235">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.6999999601175" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.6999999601175"
+                    Point2="0,24.6999999601175"
+                    Point3="4,24.6999999601175" />
+                  <mssgle:LineSegment
+                    End="88.2000002235175,24.6999999601175" />
+                  <mssgle:CubicBezierSegment
+                    Point1="88.2000002235175,24.6999999601175"
+                    Point2="92.2000002235175,24.6999999601175"
+                    Point3="92.2000002235175,28.6999999601175" />
+                  <mssgle:LineSegment
+                    End="92.2000002235175,41.899999920235" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
