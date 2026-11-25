@@ -1,0 +1,1346 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/25/2026 1:17:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MELAK_GAZZAH"
+  DTS:CreatorName="MELAK_GAZZAH\melak"
+  DTS:DTSID="{1997F33C-9265-4185-8D37-F520DA5DA919}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="STG_Melak_Branchements"
+  DTS:PackageType="5"
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{8FB0112C-16AA-4817-B55A-8A4AF39BEC06}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_Excel_Branchements]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{01DCAC13-F3E2-4480-A972-E90D19627BC3}"
+      DTS:ObjectName="CM_Excel_Branchements">
+      <DTS:PropertyExpression
+        DTS:Name="ServerName">@[$Project::P_DossierSources] + "nombre_branchement-_2020.xls"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=C:\SONEDE_Sources\nombre_branchement-_2020.xls;Provider=Microsoft.ACE.OLEDB.16.0;Extended Properties=&quot;Excel 8.0;HDR=NO;IMEX=1;&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FC0D2891-2110-42EF-B9CC-BFC42DD0ADAC}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LogID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C8E753D0-8AAB-4BCC-808A-11FDBE3FF562}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NbChargees">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B1F925BF-0DCC-4A61-AEDE-0902097DA997}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NbLues">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Excel vers Stg_Branchements"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{1416EBB8-AACC-4BFD-BD59-E2A1C56D2ABD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Excel vers Stg_Branchements"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Fractionnement conditionnel;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Achemine des lignes de données vers différentes sorties, selon le contexte des données. Utilisez des conditions (expressions SSIS) pour spécifier les lignes qui seront acheminées. Par exemple, séparez les enregistrements qui doivent être nettoyés de ceux qui sont prêts à être chargés ou acheminez uniquement un sous-ensemble d'enregistrements."
+              name="CSPL - Exclure total"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Inputs[Entrée de fractionnement conditionnel]"
+                  description="Entrée vers la transformation de fractionnement conditionnel"
+                  name="Entrée de fractionnement conditionnel">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Inputs[Entrée de fractionnement conditionnel].Columns[F1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F1"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F1]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Outputs[Ligne_Total]"
+                  description="Sortie 1 de la transformation de fractionnement conditionnel"
+                  errorOrTruncationOperation="Calcul"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Ligne_Total"
+                  synchronousInputId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Inputs[Entrée de fractionnement conditionnel]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Spécifie l'expression. Cette version d'expression utilise les identificateurs de traçabilité à la place des noms de colonnes."
+                      name="Expression">[UPPER]([TRIM]([REPLACENULL](#{Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F1]},""))) == "ENS.TUNISIE"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Spécifie la version claire de l'expression. Cette version d'expression utilise les noms de colonnes."
+                      expressionType="Notify"
+                      name="FriendlyExpression">UPPER(TRIM(REPLACENULL(F1,""))) == "ENS.TUNISIE"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie la position de la condition dans la liste des conditions que la transformation évalue. L'ordre d'évaluation se fait par ordre croissant de valeur."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Outputs[Districts]"
+                  description="Sortie par défaut de la transformation de fractionnement conditionnel"
+                  exclusionGroup="1"
+                  name="Districts"
+                  synchronousInputId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Inputs[Entrée de fractionnement conditionnel]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Outputs[Sortie d'erreur de fractionnement conditionnel]"
+                  description="Sortie d'erreur de la transformation de fractionnement conditionnel"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de fractionnement conditionnel"
+                  synchronousInputId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Inputs[Entrée de fractionnement conditionnel]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Outputs[Sortie d'erreur de fractionnement conditionnel].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Outputs[Sortie d'erreur de fractionnement conditionnel].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Outputs[Sortie d'erreur de fractionnement conditionnel].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Outputs[Sortie d'erreur de fractionnement conditionnel].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+              name="DER - Colonnes staging"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Inputs[Entrée de colonne dérivée]"
+                  description="Entrée de la transformation de colonnes dérivées"
+                  name="Entrée de colonne dérivée">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Inputs[Entrée de colonne dérivée].Columns[F1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="F1"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F1]" />
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Inputs[Entrée de colonne dérivée].Columns[F2]"
+                      cachedDataType="r8"
+                      cachedName="F2"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F2]" />
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Inputs[Entrée de colonne dérivée].Columns[F3]"
+                      cachedDataType="r8"
+                      cachedName="F3"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F3]" />
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Inputs[Entrée de colonne dérivée].Columns[F4]"
+                      cachedDataType="r8"
+                      cachedName="F4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F4]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée]"
+                  description="Sortie par défaut de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  name="Sortie de colonne dérivée"
+                  synchronousInputId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Annee]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Annee]"
+                      name="Annee"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">"2020"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"2020"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Source_File]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="28"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Source_File]"
+                      name="Source_File"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">"nombre_branchement-_2020.xls"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"nombre_branchement-_2020.xls"</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[District_Std]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[District_Std]"
+                      name="District_Std"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">[UPPER]([TRIM]([REPLACE](#{Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F1]},"  "," ")))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UPPER(TRIM(REPLACE(F1,"  "," ")))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Entrep_Txt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="30"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Entrep_Txt]"
+                      name="Nb_Entrep_Txt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">(DT_WSTR,30)#{Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F2]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,30)F2</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Sonede_Txt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="30"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Sonede_Txt]"
+                      name="Nb_Sonede_Txt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">(DT_WSTR,30)#{Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F3]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,30)F3</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Total_Txt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Calcul"
+                      errorRowDisposition="FailComponent"
+                      length="30"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Total_Txt]"
+                      name="Nb_Total_Txt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression de colonne dérivée"
+                          name="Expression">(DT_WSTR,30)#{Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F4]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Expression claire de colonne dérivée"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,30)F4</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie d'erreur de colonne dérivée]"
+                  description="Sortie d'erreur de la transformation de colonnes dérivées"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de colonne dérivée"
+                  synchronousInputId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Inputs[Entrée de colonne dérivée]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="OLE - Stg_Branchements"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[Stg_Branchements]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Connections[OleDbConnection]"
+                  connectionManagerID="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CM_SA_SONEDE]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].Columns[Annee]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="Annee"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Annee]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Annee]" />
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].Columns[Source_File]"
+                      cachedDataType="wstr"
+                      cachedLength="28"
+                      cachedName="Source_File"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Source_File]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Source_File]" />
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].Columns[District_Std]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="District_Std"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[District]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[District_Std]" />
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].Columns[Nb_Entrep_Txt]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Nb_Entrep_Txt"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Entrep]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Entrep_Txt]" />
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].Columns[Nb_Sonede_Txt]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Nb_Sonede_Txt"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Sonede]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Sonede_Txt]" />
+                    <inputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].Columns[Nb_Total_Txt]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="Nb_Total_Txt"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Total]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée].Columns[Nb_Total_Txt]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Annee]"
+                      dataType="wstr"
+                      length="10"
+                      name="Annee" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[District]"
+                      dataType="wstr"
+                      length="100"
+                      name="District" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Entrep]"
+                      dataType="wstr"
+                      length="30"
+                      name="Nb_Entrep" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Sonede]"
+                      dataType="wstr"
+                      length="30"
+                      name="Nb_Sonede" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Total]"
+                      dataType="wstr"
+                      length="30"
+                      name="Nb_Total" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Source_File]"
+                      dataType="wstr"
+                      length="200"
+                      name="Source_File" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB].ExternalColumns[Load_Date]"
+                      dataType="dbTimeStamp2"
+                      name="Load_Date"
+                      scale="7" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes chargees"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Nombre de lignes;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Compte les lignes à mesure qu'elles franchissent un flux de données. Par exemple, utilisez le nombre de lignes traitées pour déterminer s'il faut ou non effectuer les opérations de nettoyage, ou mettez à jour le texte dans un message électronique pour communiquer l'état du traitement."
+              name="RC - Lignes chargees">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nombre de lignes."
+                  name="VariableName">User::NbChargees</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes chargees.Inputs[Nombre de lignes entrée 1]"
+                  hasSideEffects="true"
+                  name="Nombre de lignes entrée 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes chargees.Outputs[Nombre de lignes sortie 1]"
+                  name="Nombre de lignes sortie 1"
+                  synchronousInputId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes chargees.Inputs[Nombre de lignes entrée 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes lues"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Nombre de lignes;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+              description="Compte les lignes à mesure qu'elles franchissent un flux de données. Par exemple, utilisez le nombre de lignes traitées pour déterminer s'il faut ou non effectuer les opérations de nettoyage, ou mettez à jour le texte dans un message électronique pour communiquer l'état du traitement."
+              name="RC - Lignes lues">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nombre de lignes."
+                  name="VariableName">User::NbLues</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes lues.Inputs[Nombre de lignes entrée 1]"
+                  hasSideEffects="true"
+                  name="Nombre de lignes entrée 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes lues.Outputs[Nombre de lignes sortie 1]"
+                  name="Nombre de lignes sortie 1"
+                  synchronousInputId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes lues.Inputs[Nombre de lignes entrée 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="XLS - Fichier branchements"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT * FROM [2020$A2:D40]</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_Excel_Branchements]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_Excel_Branchements]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].ExternalColumns[F1]"
+                      length="255"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F1]"
+                      name="F1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F2]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].ExternalColumns[F2]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F2]"
+                      name="F2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F3]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].ExternalColumns[F3]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F3]"
+                      name="F3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F4]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].ExternalColumns[F4]"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].Columns[F4]"
+                      name="F4"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].ExternalColumns[F1]"
+                      dataType="wstr"
+                      length="255"
+                      name="F1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].ExternalColumns[F2]"
+                      dataType="r8"
+                      name="F2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].ExternalColumns[F3]"
+                      dataType="r8"
+                      name="F3" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB].ExternalColumns[F4]"
+                      dataType="r8"
+                      name="F4" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[F1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[F1]"
+                      name="F1" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[F2]"
+                      dataType="r8"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[F2]"
+                      name="F2" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[F3]"
+                      dataType="r8"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[F3]"
+                      name="F3" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[F4]"
+                      dataType="r8"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[F4]"
+                      name="F4" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Excel vers Stg_Branchements.Paths[Districts]"
+              endId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Inputs[Entrée de colonne dérivée]"
+              name="Districts"
+              startId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Outputs[Districts]" />
+            <path
+              refId="Package\DFT - Excel vers Stg_Branchements.Paths[Nombre de lignes sortie 1]"
+              endId="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total.Inputs[Entrée de fractionnement conditionnel]"
+              name="Nombre de lignes sortie 1"
+              startId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes lues.Outputs[Nombre de lignes sortie 1]" />
+            <path
+              refId="Package\DFT - Excel vers Stg_Branchements.Paths[Nombre de lignes sortie 11]"
+              endId="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements.Inputs[Entrée de destination OLE DB]"
+              name="Nombre de lignes sortie 1"
+              startId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes chargees.Outputs[Nombre de lignes sortie 1]" />
+            <path
+              refId="Package\DFT - Excel vers Stg_Branchements.Paths[Sortie de colonne dérivée]"
+              endId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes chargees.Inputs[Nombre de lignes entrée 1]"
+              name="Sortie de colonne dérivée"
+              startId="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging.Outputs[Sortie de colonne dérivée]" />
+            <path
+              refId="Package\DFT - Excel vers Stg_Branchements.Paths[Sortie de source OLE DB]"
+              endId="Package\DFT - Excel vers Stg_Branchements\RC - Lignes lues.Inputs[Nombre de lignes entrée 1]"
+              name="Sortie de source OLE DB"
+              startId="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements.Outputs[Sortie de source OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Journal debut"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{F0DFDD05-12C4-4A60-ADC9-F5525D156D47}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Journal debut"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_Log_Start ?, ? OUTPUT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::LogID"
+            SQLTask:ParameterDirection="Output"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Journal fin"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{09F978AC-B486-4B73-A3FD-C020BB89091E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Journal fin"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_Log_End ?, 'SUCCESS', ?, ?, 0, NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::LogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::NbLues"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::NbChargees"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Vider Stg_Branchements"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{69663818-8399-486C-9516-2B7558F8A76D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Vider Stg_Branchements"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.Stg_Branchements;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{2ABED820-579C-4313-A0D5-E5CE6E2B8743}"
+      DTS:From="Package\SQL - Journal debut"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\SQL - Vider Stg_Branchements" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{18BA57C1-C42A-417A-AD1F-A511A2F3B064}"
+      DTS:From="Package\SQL - Vider Stg_Branchements"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 1"
+      DTS:To="Package\DFT - Excel vers Stg_Branchements" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{10CEF4C9-C3E9-41D6-91EE-2CDB6217C770}"
+      DTS:From="Package\DFT - Excel vers Stg_Branchements"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 2"
+      DTS:To="Package\SQL - Journal fin" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{C2844745-0DB4-4061-B0D9-ED24C18B0FF7}"
+      DTS:EventID="676695296"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="Propriété de propagation de l'événement"
+          DTS:DTSID="{D25AE72A-CEEC-49F7-BCB7-500B80489FA8}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL - Journal erreur"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tâche d'exécution de requêtes SQL"
+          DTS:DTSID="{0A472031-FF90-4251-91B7-00F8746AE5E3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Journal erreur"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+              SQLTask:SqlStatementSource="EXEC dbo.usp_Log_End ?, 'FAILED', NULL, NULL, NULL, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\SQL - Journal debut"
+          TopLeft="80.7142858861052,35.9411764390844" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\SQL - Journal fin"
+          TopLeft="132.85714313996,440.070588099895" />
+        <NodeLayout
+          Size="196.8,41.6"
+          Id="Package\SQL - Vider Stg_Branchements"
+          TopLeft="170.714286077692,134.588235176146" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="166.714285886105,77.5411764390844">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.400000191586,57.0470587370614"
+              Start="0,0"
+              End="102.400000191586,49.5470587370614">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5235293685307" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5235293685307"
+                    Point2="0,28.5235293685307"
+                    Point3="4,28.5235293685307" />
+                  <mssgle:LineSegment
+                    End="98.4000001915864,28.5235293685307" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98.4000001915864,28.5235293685307"
+                    Point2="102.400000191586,28.5235293685307"
+                    Point3="102.400000191586,32.5235293685307" />
+                  <mssgle:LineSegment
+                    End="102.400000191586,49.5470587370614" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="246.4,41.6"
+          Id="Package\DFT - Excel vers Stg_Branchements"
+          TopLeft="172.885714624792,226.423529214698" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="269.114286077692,176.188235176146">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.9714285470997,50.2352940385522"
+              Start="0,0"
+              End="26.9714285470997,42.7352940385522">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.1176470192761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.1176470192761"
+                    Point2="0,25.1176470192761"
+                    Point3="4,25.1176470192761" />
+                  <mssgle:LineSegment
+                    End="22.9714285470997,25.1176470192761" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.9714285470997,25.1176470192761"
+                    Point2="26.9714285470997,25.1176470192761"
+                    Point3="26.9714285470997,29.1176470192761" />
+                  <mssgle:LineSegment
+                    End="26.9714285470997,42.7352940385522" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 2]"
+          TopLeft="296.085714624792,268.023529214698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-84.8285714848312,172.047058885197"
+              Start="0,0"
+              End="-84.8285714848312,164.547058885197">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.0235294425983" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,82.0235294425983"
+                    Point2="0,86.0235294425983"
+                    Point3="-4,86.0235294425983" />
+                  <mssgle:LineSegment
+                    End="-80.8285714848312,86.0235294425983" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-80.8285714848312,86.0235294425983"
+                    Point2="-84.8285714848312,86.0235294425983"
+                    Point3="-84.8285714848312,90.0235294425983" />
+                  <mssgle:LineSegment
+                    End="-84.8285714848312,164.547058885197" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package.EventHandlers[OnError]\SQL - Journal erreur"
+          TopLeft="118.999998226762,75.9999988675118" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DFT - Excel vers Stg_Branchements">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="207.2,41.6"
+          Id="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements"
+          TopLeft="37.1428572219245,22.1764705687967" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\DFT - Excel vers Stg_Branchements\RC - Lignes lues"
+          TopLeft="54.2857144012743,132.294117531098" />
+        <EdgeLayout
+          Id="Package\DFT - Excel vers Stg_Branchements.Paths[Sortie de source OLE DB]"
+          TopLeft="140.742857221925,63.7764705687967">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.25714282065024,68.5176469623011"
+              Start="0,0"
+              End="-9.25714282065024,61.0176469623011">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.2588234811505" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.2588234811505"
+                    Point2="0,34.2588234811505"
+                    Point3="-4,34.2588234811505" />
+                  <mssgle:LineSegment
+                    End="-5.25714282065024,34.2588234811505" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.25714282065024,34.2588234811505"
+                    Point2="-9.25714282065024,34.2588234811505"
+                    Point3="-9.25714282065024,38.2588234811505" />
+                  <mssgle:LineSegment
+                    End="-9.25714282065024,61.0176469623011" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\DFT - Excel vers Stg_Branchements\CSPL - Exclure total"
+          TopLeft="122.857143118673,227.882352741429" />
+        <EdgeLayout
+          Id="Package\DFT - Excel vers Stg_Branchements.Paths[Nombre de lignes sortie 1]"
+          TopLeft="131.485714401274,173.894117531098">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76.9714287173992,53.9882352103309"
+              Start="0,0"
+              End="76.9714287173992,46.4882352103309">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.9941176051654" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.9941176051654"
+                    Point2="0,26.9941176051654"
+                    Point3="4,26.9941176051654" />
+                  <mssgle:LineSegment
+                    End="72.9714287173992,26.9941176051654" />
+                  <mssgle:CubicBezierSegment
+                    Point1="72.9714287173992,26.9941176051654"
+                    Point2="76.9714287173992,26.9941176051654"
+                    Point3="76.9714287173992,30.9941176051654" />
+                  <mssgle:LineSegment
+                    End="76.9714287173992,46.4882352103309" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\DFT - Excel vers Stg_Branchements\DER - Colonnes staging"
+          TopLeft="67.1428572857866,314.788235073591" />
+        <EdgeLayout
+          Id="Package\DFT - Excel vers Stg_Branchements.Paths[Districts]"
+          TopLeft="208.457143118673,269.482352741429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-46.9142858328869,45.3058823321621"
+              Start="0,0"
+              End="-46.9142858328869,37.8058823321621">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.6529411660811" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.6529411660811"
+                    Point2="0,22.6529411660811"
+                    Point3="-4,22.6529411660811" />
+                  <mssgle:LineSegment
+                    End="-42.9142858328869,22.6529411660811" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-42.9142858328869,22.6529411660811"
+                    Point2="-46.9142858328869,22.6529411660811"
+                    Point3="-46.9142858328869,26.6529411660811" />
+                  <mssgle:LineSegment
+                    End="-46.9142858328869,37.8058823321621" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-41.5797210414435,27.6529411660811,36.24515625,9.451171875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\DFT - Excel vers Stg_Branchements\RC - Lignes chargees"
+          TopLeft="89.2857144757802,425.647058566136" />
+        <EdgeLayout
+          Id="Package\DFT - Excel vers Stg_Branchements.Paths[Sortie de colonne dérivée]"
+          TopLeft="161.542857285787,356.388235073591">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16.5428571899936,69.2588234925456"
+              Start="0,0"
+              End="16.5428571899936,61.7588234925456">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.6294117462728" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.6294117462728"
+                    Point2="0,34.6294117462728"
+                    Point3="4,34.6294117462728" />
+                  <mssgle:LineSegment
+                    End="12.5428571899936,34.6294117462728" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12.5428571899936,34.6294117462728"
+                    Point2="16.5428571899936,34.6294117462728"
+                    Point3="16.5428571899936,38.6294117462728" />
+                  <mssgle:LineSegment
+                    End="16.5428571899936,61.7588234925456" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="196,41.6"
+          Id="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements"
+          TopLeft="54.2857144012743,566.058823264646" />
+        <EdgeLayout
+          Id="Package\DFT - Excel vers Stg_Branchements.Paths[Nombre de lignes sortie 11]"
+          TopLeft="178.08571447578,467.247058566136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.8000000745058,98.8117646985091"
+              Start="0,0"
+              End="-25.8000000745058,91.3117646985091">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.4058823492546" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.4058823492546"
+                    Point2="0,49.4058823492546"
+                    Point3="-4,49.4058823492546" />
+                  <mssgle:LineSegment
+                    End="-21.8000000745058,49.4058823492546" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.8000000745058,49.4058823492546"
+                    Point2="-25.8000000745058,49.4058823492546"
+                    Point3="-25.8000000745058,53.4058823492546" />
+                  <mssgle:LineSegment
+                    End="-25.8000000745058,91.3117646985091" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Excel vers Stg_Branchements\XLS - Fichier branchements">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Excel vers Stg_Branchements\OLE - Stg_Branchements">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
