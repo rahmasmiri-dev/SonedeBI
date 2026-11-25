@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="CM_SA_SONEDE"
+  DTS:DTSID="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=SA_SONEDE;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Trust Server Certificate=True;Application Name=SSIS-SONEDE_ETL-{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}localhost.SA_SONEDE;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
