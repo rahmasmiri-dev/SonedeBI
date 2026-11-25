@@ -11,8 +11,8 @@
   DTS:LocaleID="8192"
   DTS:ObjectName="STG_Melak_Abonnes"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{4C25DAE6-54DB-4438-8610-5BED30342C20}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{B9E59673-7578-48B2-B656-E93674D55C20}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -133,6 +133,407 @@
               version="1">
               <components>
                 <component
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Conversion de données;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Conversion de données"
+                  name="CNV - Texte"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Inputs[Entrée de conversion de données]"
+                      name="Entrée de conversion de données">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Inputs[Entrée de conversion de données].Columns[Nb_Abonnes]"
+                          cachedDataType="r8"
+                          cachedName="Nb_Abonnes"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie de conversion de données]"
+                      exclusionGroup="1"
+                      name="Sortie de conversion de données"
+                      synchronousInputId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Inputs[Entrée de conversion de données]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie de conversion de données].Columns[Nb_Abonnes_Txt]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="30"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie de conversion de données].Columns[Nb_Abonnes_Txt]"
+                          name="Nb_Abonnes_Txt"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Spécifie la colonne d'entrée utilisée comme source de données pour la conversion."
+                              name="SourceInputColumnLineageID">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la colonne utilise les routines d'analyse les plus rapides, avec des paramètres régionaux neutres."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie d'erreur de conversion de données]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de conversion de données"
+                      synchronousInputId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Inputs[Entrée de conversion de données]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie d'erreur de conversion de données].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Colonne dérivée;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Crée de nouvelles valeurs de colonne en appliquant des expressions aux colonnes d'entrée de transformation. Créez de nouvelles colonnes ou remplacez celles qui existent déjà. Par exemple, concaténez les valeurs de la colonne 'prénom' et de la colonne 'nom' pour créer une colonne 'nom complet'."
+                  name="DER - Annee et fichier"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Inputs[Entrée de colonne dérivée]"
+                      description="Entrée de la transformation de colonnes dérivées"
+                      name="Entrée de colonne dérivée">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Inputs[Entrée de colonne dérivée].Columns[district]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="district"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[district]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée]"
+                      description="Sortie par défaut de la transformation de colonnes dérivées"
+                      exclusionGroup="1"
+                      name="Sortie de colonne dérivée"
+                      synchronousInputId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Inputs[Entrée de colonne dérivée]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[Annee]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Calcul"
+                          errorRowDisposition="FailComponent"
+                          length="4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[Annee]"
+                          name="Annee"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression de colonne dérivée"
+                              name="Expression">[SUBSTRING](@[User::FichierCourante],[LEN](@[User::FichierCourante]) - 8,4)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression claire de colonne dérivée"
+                              expressionType="Notify"
+                              name="FriendlyExpression">SUBSTRING(@[User::FichierCourante],LEN(@[User::FichierCourante]) - 8,4)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[Source_File]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Calcul"
+                          errorRowDisposition="FailComponent"
+                          length="57"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[Source_File]"
+                          name="Source_File"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression de colonne dérivée"
+                              name="Expression">[RIGHT](@[User::FichierCourante],[FINDSTRING]([REVERSE](@[User::FichierCourante]),"\\",1) - 1)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression claire de colonne dérivée"
+                              expressionType="Notify"
+                              name="FriendlyExpression">RIGHT(@[User::FichierCourante],FINDSTRING(REVERSE(@[User::FichierCourante]),"\\",1) - 1)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[District_Std]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Calcul"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[District_Std]"
+                          name="District_Std"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression de colonne dérivée"
+                              name="Expression">[UPPER]([TRIM]([REPLACE](#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[district]},"  "," ")))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expression claire de colonne dérivée"
+                              expressionType="Notify"
+                              name="FriendlyExpression">UPPER(TRIM(REPLACE(district,"  "," ")))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie d'erreur de colonne dérivée]"
+                      description="Sortie d'erreur de la transformation de colonnes dérivées"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de colonne dérivée"
+                      synchronousInputId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Inputs[Entrée de colonne dérivée]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie d'erreur de colonne dérivée].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+                  description="Destination OLE DB"
+                  name="OLE - Stg_Abonnes"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowset">[dbo].[Stg_Abonnes]</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Commande SQL à exécuter."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie le mode utilisé pour accéder à la base de données."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Connections[OleDbConnection]"
+                      connectionManagerID="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CM_SA_SONEDE]"
+                      description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB]"
+                      errorOrTruncationOperation="Insérer"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrée de destination OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].Columns[Usage_]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Usage_"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Usage_]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Usage_]" />
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].Columns[Annee]"
+                          cachedDataType="wstr"
+                          cachedLength="4"
+                          cachedName="Annee"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Annee]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Annee]" />
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].Columns[Source_File]"
+                          cachedDataType="wstr"
+                          cachedLength="57"
+                          cachedName="Source_File"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Source_File]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Source_File]" />
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].Columns[District_Std]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="District_Std"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[District]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[District_Std]" />
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].Columns[Nb_Abonnes_Txt]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="Nb_Abonnes_Txt"
+                          externalMetadataColumnId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Abonnes]"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie de conversion de données].Columns[Nb_Abonnes_Txt]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Annee]"
+                          dataType="wstr"
+                          length="10"
+                          name="Annee" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[District]"
+                          dataType="wstr"
+                          length="100"
+                          name="District" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Usage_]"
+                          dataType="wstr"
+                          length="100"
+                          name="Usage_" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Nb_Abonnes]"
+                          dataType="wstr"
+                          length="30"
+                          name="Nb_Abonnes" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Source_File]"
+                          dataType="wstr"
+                          length="200"
+                          name="Source_File" />
+                        <externalMetadataColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB].ExternalColumns[Load_Date]"
+                          dataType="dbTimeStamp2"
+                          name="Load_Date"
+                          scale="7" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Outputs[Sortie d'erreur de destination OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Sortie d'erreur de destination OLE DB"
+                      synchronousInputId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes chargees"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Nombre de lignes;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Compte les lignes à mesure qu'elles franchissent un flux de données. Par exemple, utilisez le nombre de lignes traitées pour déterminer s'il faut ou non effectuer les opérations de nettoyage, ou mettez à jour le texte dans un message électronique pour communiquer l'état du traitement."
+                  name="RC - Lignes chargees">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Spécifie la variable contenant le nombre de lignes."
+                      name="VariableName">User::NbChargees</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes chargees.Inputs[Nombre de lignes entrée 1]"
+                      hasSideEffects="true"
+                      name="Nombre de lignes entrée 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes chargees.Outputs[Nombre de lignes sortie 1]"
+                      name="Nombre de lignes sortie 1"
+                      synchronousInputId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes chargees.Inputs[Nombre de lignes entrée 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues"
                   componentClassID="Microsoft.RowCount"
                   contactInfo="Nombre de lignes;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
@@ -157,6 +558,297 @@
                       refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues.Outputs[Nombre de lignes sortie 1]"
                       name="Nombre de lignes sortie 1"
                       synchronousInputId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues.Inputs[Nombre de lignes entrée 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages"
+                  componentClassID="Microsoft.UnPivot"
+                  contactInfo="Supprimer le tableau croisé dynamique;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;0"
+                  description="Développe un flux de données non normalisé en une version plus normalisée. Les valeurs provenant de plusieurs colonnes d'un même enregistrement sont développées en plusieurs enregistrements dans une colonne unique. Par exemple, développez une table qui répertorie les résultats d'athlétisme avec une colonne pour chaque discipline en plusieurs enregistrements et une seule colonne de résultats."
+                  name="UNP - Usages">
+                  <inputs>
+                    <input
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot]"
+                      hasSideEffects="true"
+                      name="Entrée Unpivot">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Domestique branché]"
+                          cachedDataType="r8"
+                          cachedName="Domestique branché"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Domestique branché]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Domestique branché</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Domestique non branché]"
+                          cachedDataType="r8"
+                          cachedName="Domestique non branché"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Domestique non branché]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Domestique non branché</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Commerce]"
+                          cachedDataType="r8"
+                          cachedName="Commerce"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Commerce]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Commerce</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[administration]"
+                          cachedDataType="r8"
+                          cachedName="administration"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[administration]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">administration</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Municipal]"
+                          cachedDataType="r8"
+                          cachedName="Municipal"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Municipal]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Municipal</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Industrie]"
+                          cachedDataType="r8"
+                          cachedName="Industrie"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Industrie]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Industrie</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Tourisme]"
+                          cachedDataType="r8"
+                          cachedName="Tourisme"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Tourisme]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Tourisme</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Divers]"
+                          cachedDataType="r8"
+                          cachedName="Divers"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel].Columns[Divers]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]}</property>
+                            <property
+                              dataType="System.String"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue">Divers</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Annee]"
+                          cachedDataType="wstr"
+                          cachedLength="4"
+                          cachedName="Annee"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[Annee]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Annee]}</property>
+                            <property
+                              dataType="System.Null"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[Source_File]"
+                          cachedDataType="wstr"
+                          cachedLength="57"
+                          cachedName="Source_File"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[Source_File]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Source_File]}</property>
+                            <property
+                              dataType="System.Null"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot].Columns[District_Std]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="District_Std"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée].Columns[District_Std]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="ID de traçabilité de la colonne de sortie qui doit recevoir la valeur de cette colonne d'entrée. Ou -1 si la valeur de la colonne n'est pas utilisée dans les lignes de sortie."
+                              name="DestinationColumn">#{Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[District_Std]}</property>
+                            <property
+                              dataType="System.Null"
+                              description="Spécifie la valeur enregistrée dans la colonne PivotKey de la ligne de sortie."
+                              expressionType="Notify"
+                              name="PivotKeyValue" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot]"
+                      name="Sortie Unpivot">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Usage_]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Usage_]"
+                          name="Usage_">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la valeur dans la propriété PivotKeyValue est enregistrée dans la colonne de la nouvelle ligne."
+                              name="PivotKey">true</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]"
+                          dataType="r8"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Nb_Abonnes]"
+                          name="Nb_Abonnes">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la valeur dans la propriété PivotKeyValue est enregistrée dans la colonne de la nouvelle ligne."
+                              name="PivotKey">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Annee]"
+                          dataType="wstr"
+                          length="4"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Annee]"
+                          name="Annee">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la valeur dans la propriété PivotKeyValue est enregistrée dans la colonne de la nouvelle ligne."
+                              name="PivotKey">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Source_File]"
+                          dataType="wstr"
+                          length="57"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[Source_File]"
+                          name="Source_File">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la valeur dans la propriété PivotKeyValue est enregistrée dans la colonne de la nouvelle ligne."
+                              name="PivotKey">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[District_Std]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot].Columns[District_Std]"
+                          name="District_Std">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indique si la valeur dans la propriété PivotKeyValue est enregistrée dans la colonne de la nouvelle ligne."
+                              name="PivotKey">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
                       <externalMetadataColumns />
                     </output>
                   </outputs>
@@ -427,15 +1119,90 @@
               </components>
               <paths>
                 <path
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Nombre de lignes sortie 1]"
+                  endId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Inputs[Entrée de colonne dérivée]"
+                  name="Nombre de lignes sortie 1"
+                  startId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues.Outputs[Nombre de lignes sortie 1]" />
+                <path
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Nombre de lignes sortie 11]"
+                  endId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes.Inputs[Entrée de destination OLE DB]"
+                  name="Nombre de lignes sortie 1"
+                  startId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes chargees.Outputs[Nombre de lignes sortie 1]" />
+                <path
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie de colonne dérivée]"
+                  endId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Inputs[Entrée Unpivot]"
+                  name="Sortie de colonne dérivée"
+                  startId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier.Outputs[Sortie de colonne dérivée]" />
+                <path
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie de conversion de données]"
+                  endId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes chargees.Inputs[Nombre de lignes entrée 1]"
+                  name="Sortie de conversion de données"
+                  startId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Outputs[Sortie de conversion de données]" />
+                <path
                   refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie de source Excel]"
                   endId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues.Inputs[Nombre de lignes entrée 1]"
                   name="Sortie de source Excel"
                   startId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes.Outputs[Sortie de source Excel]" />
+                <path
+                  refId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie Unpivot]"
+                  endId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte.Inputs[Entrée de conversion de données]"
+                  name="Sortie Unpivot"
+                  startId="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages.Outputs[Sortie Unpivot]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Fichiers abonnes\EXP - Cumul chargees"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Tâche d'expression"
+          DTS:DTSID="{F46A4AD5-5460-489F-BDA4-41AB6C38B350}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXP - Cumul chargees"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::TotalChargees] = @[User::TotalChargees] + @[User::NbChargees]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\FEL - Fichiers abonnes\EXP - Cumul lues"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Tâche d'expression"
+          DTS:DTSID="{EDC6518B-E5EE-4FDE-A1AF-22D8D696C276}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXP - Cumul lues"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::TotalLues] = @[User::TotalLues] + @[User::NbLues]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
       </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Fichiers abonnes.PrecedenceConstraints[Contrainte]"
+          DTS:CreationName=""
+          DTS:DTSID="{AD40A587-9CB3-4878-839F-BACA14E0EB69}"
+          DTS:From="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Contrainte"
+          DTS:To="Package\FEL - Fichiers abonnes\EXP - Cumul lues" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FEL - Fichiers abonnes.PrecedenceConstraints[Contrainte 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{4328ACEA-5484-4E5F-AEA3-AF8DC43F7D98}"
+          DTS:From="Package\FEL - Fichiers abonnes\EXP - Cumul lues"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Contrainte 1"
+          DTS:To="Package\FEL - Fichiers abonnes\EXP - Cumul chargees" />
+      </DTS:PrecedenceConstraints>
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
@@ -476,6 +1243,42 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\SQL - Journal fin"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{3F8C6E7C-1F18-4723-82F8-E5A986FECA07}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Journal fin"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+          SQLTask:SqlStatementSource="EXEC dbo.usp_Log_End ?, 'SUCCESS', ?, ?, 0, NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::LogID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::TotalLues"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::TotalChargees"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\SQL - Vider Stg_Abonnes"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Tâche d'exécution de requêtes SQL"
@@ -510,7 +1313,68 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Contrainte 1"
       DTS:To="Package\FEL - Fichiers abonnes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{DEDBB197-4CFE-4FFD-9D20-9DBB03FD5DEA}"
+      DTS:From="Package\FEL - Fichiers abonnes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte 2"
+      DTS:To="Package\SQL - Journal fin" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{A2181864-0F61-43D1-83F9-1ABE9DD8E416}"
+      DTS:EventID="676695296"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="Propriété de propagation de l'événement"
+          DTS:DTSID="{D017378A-DDC8-446D-81DB-9BC80B1D9C3F}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\SQL - Journal erreur"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Tâche d'exécution de requêtes SQL"
+          DTS:DTSID="{99D92CAA-A970-4558-A43D-F674B77BE5B4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Journal erreur"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{73ACEB0E-3C1A-4C92-BE55-38CCE56AD79D}"
+              SQLTask:SqlStatementSource="EXEC dbo.usp_Log_End ?, 'FAILED', NULL, NULL, NULL, ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::LogID"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
 <!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
@@ -522,7 +1386,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="172,41.6"
           Id="Package\SQL - Journal debut"
@@ -569,11 +1433,87 @@
           Size="220,41.6"
           Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes"
           TopLeft="84.2285717083484,25.3999997834949" />
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\FEL - Fichiers abonnes\EXP - Cumul lues"
+          TopLeft="95.2000002128737,128.941176199789" />
+        <EdgeLayout
+          Id="Package\FEL - Fichiers abonnes.PrecedenceConstraints[Contrainte]"
+          TopLeft="194.228571708348,66.9999997834949">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.8285714954746,61.9411764162943"
+              Start="0,0"
+              End="-19.8285714954746,54.4411764162943">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.9705882081472" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.9705882081472"
+                    Point2="0,30.9705882081472"
+                    Point3="-4,30.9705882081472" />
+                  <mssgle:LineSegment
+                    End="-15.8285714954746,30.9705882081472" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.8285714954746,30.9705882081472"
+                    Point2="-19.8285714954746,30.9705882081472"
+                    Point3="-19.8285714954746,34.9705882081472" />
+                  <mssgle:LineSegment
+                    End="-19.8285714954746,54.4411764162943" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\FEL - Fichiers abonnes\EXP - Cumul chargees"
+          TopLeft="100.914285939324,241.352940898298" />
+        <EdgeLayout
+          Id="Package\FEL - Fichiers abonnes.PrecedenceConstraints[Contrainte 1]"
+          TopLeft="174.400000212874,170.541176199789">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.7142857264499,70.8117646985092"
+              Start="0,0"
+              End="17.7142857264499,63.3117646985092">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.4058823492546" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.4058823492546"
+                    Point2="0,35.4058823492546"
+                    Point3="4,35.4058823492546" />
+                  <mssgle:LineSegment
+                    End="13.7142857264499,35.4058823492546" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.7142857264499,35.4058823492546"
+                    Point2="17.7142857264499,35.4058823492546"
+                    Point3="17.7142857264499,39.4058823492546" />
+                  <mssgle:LineSegment
+                    End="17.7142857264499,63.3117646985092" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="309.6,121.6"
-          Size="309.6,164.8"
+          PanelSize="329.6,337.6"
+          Size="329.6,380.8"
           Id="Package\FEL - Fichiers abonnes"
           TopLeft="4.40000002128718,206.470588054315" />
         <EdgeLayout
@@ -582,26 +1522,64 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-109.914286056404,30.2823528781687"
+              EndConnector="-99.9142860564044,30.2823528781687"
               Start="0,0"
-              End="-109.914286056404,22.7823528781687">
+              End="-99.9142860564044,22.7823528781687">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.1411764390844" />
+                    End="0,11.1411764390843" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11.1411764390844"
-                    Point2="0,15.1411764390844"
-                    Point3="-4,15.1411764390844" />
+                    Point1="0,11.1411764390843"
+                    Point2="0,15.1411764390843"
+                    Point3="-4,15.1411764390843" />
                   <mssgle:LineSegment
-                    End="-105.914286056404,15.1411764390844" />
+                    End="-95.9142860564044,15.1411764390843" />
                   <mssgle:CubicBezierSegment
-                    Point1="-105.914286056404,15.1411764390844"
-                    Point2="-109.914286056404,15.1411764390844"
-                    Point3="-109.914286056404,19.1411764390844" />
+                    Point1="-95.9142860564044,15.1411764390843"
+                    Point2="-99.9142860564044,15.1411764390843"
+                    Point3="-99.9142860564044,19.1411764390843" />
                   <mssgle:LineSegment
-                    End="-109.914286056404,22.7823528781687" />
+                    End="-99.9142860564044,22.7823528781687" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\SQL - Journal fin"
+          TopLeft="113.571428813192,660.305882024497" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte 2]"
+          TopLeft="169.200000021287,587.270588054315">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.7714287919051,73.0352939701825"
+              Start="0,0"
+              End="22.7714287919051,65.5352939701825">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5176469850912" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.5176469850912"
+                    Point2="0,36.5176469850912"
+                    Point3="4,36.5176469850912" />
+                  <mssgle:LineSegment
+                    End="18.7714287919051,36.5176469850912" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.7714287919051,36.5176469850912"
+                    Point2="22.7714287919051,36.5176469850912"
+                    Point3="22.7714287919051,40.5176469850912" />
+                  <mssgle:LineSegment
+                    End="22.7714287919051,65.5352939701825" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -617,41 +1595,219 @@
     design-time-name="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="180,41.6"
           Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\XLS - Fichier abonnes"
-          TopLeft="125.714285981898,82.5882352217259" />
+          TopLeft="127.857143129317,25.99999997721" />
         <NodeLayout
           Size="154.4,41.6"
           Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes lues"
-          TopLeft="230.714286205416,173.588235141961" />
+          TopLeft="178.57142895156,120.058823424176" />
         <EdgeLayout
           Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie de source Excel]"
-          TopLeft="215.714285981898,124.188235221726">
+          TopLeft="217.857143129317,67.59999997721">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="92.2000002235175,49.399999920235"
+              EndConnector="37.9142858222432,52.4588234469656"
               Start="0,0"
-              End="92.2000002235175,41.899999920235">
+              End="37.9142858222432,44.9588234469656">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.6999999601175" />
+                    End="0,22.2294117234828" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.6999999601175"
-                    Point2="0,24.6999999601175"
-                    Point3="4,24.6999999601175" />
+                    Point1="0,22.2294117234828"
+                    Point2="0,26.2294117234828"
+                    Point3="4,26.2294117234828" />
                   <mssgle:LineSegment
-                    End="88.2000002235175,24.6999999601175" />
+                    End="33.9142858222432,26.2294117234828" />
                   <mssgle:CubicBezierSegment
-                    Point1="88.2000002235175,24.6999999601175"
-                    Point2="92.2000002235175,24.6999999601175"
-                    Point3="92.2000002235175,28.6999999601175" />
+                    Point1="33.9142858222432,26.2294117234828"
+                    Point2="37.9142858222432,26.2294117234828"
+                    Point3="37.9142858222432,30.2294117234828" />
                   <mssgle:LineSegment
-                    End="92.2000002235175,41.899999920235" />
+                    End="37.9142858222432,44.9588234469656" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\DER - Annee et fichier"
+          TopLeft="224.371428962204,209.529411581045" />
+        <EdgeLayout
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Nombre de lignes sortie 1]"
+          TopLeft="255.77142895156,161.658823424176">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.8000000106437,47.8705881568697"
+              Start="0,0"
+              End="59.8000000106437,40.3705881568697">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.9352940784349" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.9352940784349"
+                    Point2="0,23.9352940784349"
+                    Point3="4,23.9352940784349" />
+                  <mssgle:LineSegment
+                    End="55.8000000106437,23.9352940784349" />
+                  <mssgle:CubicBezierSegment
+                    Point1="55.8000000106437,23.9352940784349"
+                    Point2="59.8000000106437,23.9352940784349"
+                    Point3="59.8000000106437,27.9352940784349" />
+                  <mssgle:LineSegment
+                    End="59.8000000106437,40.3705881568697" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="142.4,41.6"
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\UNP - Usages"
+          TopLeft="250.514286109623,292.117646802771" />
+        <EdgeLayout
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie de colonne dérivée]"
+          TopLeft="318.642857535913,251.129411581045">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.9882352217259"
+              Start="0,0"
+              End="0,33.4882352217259">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.4882352217259" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="135.2,41.6"
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\CNV - Texte"
+          TopLeft="263.114286141554,409.117646700216" />
+        <EdgeLayout
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie Unpivot]"
+          TopLeft="321.714286109623,333.717646802771">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.00000003193111,75.3999998974448"
+              Start="0,0"
+              End="9.00000003193111,67.8999998974448">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.6999999487224" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.6999999487224"
+                    Point2="0,37.6999999487224"
+                    Point3="4,37.6999999487224" />
+                  <mssgle:LineSegment
+                    End="5.00000003193111,37.6999999487224" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.00000003193111,37.6999999487224"
+                    Point2="9.00000003193111,37.6999999487224"
+                    Point3="9.00000003193111,41.6999999487224" />
+                  <mssgle:LineSegment
+                    End="9.00000003193111,67.8999998974448" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\RC - Lignes chargees"
+          TopLeft="222.857143161248,488.752940795743" />
+        <EdgeLayout
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Sortie de conversion de données]"
+          TopLeft="330.714286141554,450.717646700216">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.0571429803056,38.0352940955273"
+              Start="0,0"
+              End="-19.0571429803056,30.5352940955273">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0176470477637" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0176470477637"
+                    Point2="0,19.0176470477637"
+                    Point3="-4,19.0176470477637" />
+                  <mssgle:LineSegment
+                    End="-15.0571429803056,19.0176470477637" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.0571429803056,19.0176470477637"
+                    Point2="-19.0571429803056,19.0176470477637"
+                    Point3="-19.0571429803056,23.0176470477637" />
+                  <mssgle:LineSegment
+                    End="-19.0571429803056,30.5352940955273" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes"
+          TopLeft="236.428571761567,598.047058406606" />
+        <EdgeLayout
+          Id="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes.Paths[Nombre de lignes sortie 11]"
+          TopLeft="311.657143161248,530.352940795743">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.57142860031865,67.6941176108628"
+              Start="0,0"
+              End="9.57142860031865,60.1941176108628">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.8470588054314" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.8470588054314"
+                    Point2="0,33.8470588054314"
+                    Point3="4,33.8470588054314" />
+                  <mssgle:LineSegment
+                    End="5.57142860031865,33.8470588054314" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.57142860031865,33.8470588054314"
+                    Point2="9.57142860031865,33.8470588054314"
+                    Point3="9.57142860031865,37.8470588054314" />
+                  <mssgle:LineSegment
+                    End="9.57142860031865,60.1941176108628" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -671,5 +1827,30 @@
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FEL - Fichiers abonnes\DFT - Excel vers Stg_Abonnes\OLE - Stg_Abonnes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package.EventHandlers[OnError]\SQL - Journal erreur"
+          TopLeft="118.999998226762,75.9999988675118" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
